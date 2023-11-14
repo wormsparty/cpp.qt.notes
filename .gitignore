@@ -1,0 +1,6 @@
+*.tlog
+*.log
+*.dll
+x64
+x86
+.vs
