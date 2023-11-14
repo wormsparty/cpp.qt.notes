@@ -1,7 +1,10 @@
 *.tlog
 *.log
 *.dll
+*.o
 x64
 x86
 .vs
 a.out
+outDebug
+outRelease
