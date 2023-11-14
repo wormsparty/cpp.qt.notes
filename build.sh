@@ -1,7 +1,8 @@
 #!/bin/sh
 
-CC=clang++
-CXXFLAGS=$(curl-config --cflags)
-LDFLAGS=$(curl-config --libs)
+#CXX="g++"
+CXX="clang++"
+CXXFLAGS="-std=c++20 -Wall -O2"
+LDFLAGS="-lcurl"
 
-$CC output main.cpp $CXXFLAGS $LDFLAGS
+$CXX $CXXFLAGS CppTest/*.cpp $LDFLAGS
