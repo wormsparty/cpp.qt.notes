@@ -55,4 +55,4 @@ foreach (var thread in threads) {
     thread.Join();
 }
 
-Console.WriteLine("Run time: " + (DateTime.Now - start));
+Console.WriteLine($"Run time: {DateTime.Now - start}");
