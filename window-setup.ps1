@@ -8,3 +8,4 @@ if (Get-Command "vcpkg.exe" -ErrorAction SilentlyContinue) {
 }
 
 vcpkg install curl
+vcpkg install qt
