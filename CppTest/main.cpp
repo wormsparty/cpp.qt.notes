@@ -6,7 +6,7 @@
 #include "thread.hpp"
 
 int main() {
-	clock_t tStart = clock();
+	clock_t start_time = clock();
 	curl_global_init(CURL_GLOBAL_DEFAULT);
 
 	auto url = "http://localhost:8080";
@@ -34,7 +34,7 @@ int main() {
 	delete[] threads;
 
 	curl_global_cleanup();
-	std::cout << "Run time: " << (double)(clock() - tStart) / CLOCKS_PER_SEC << std::endl;
+	std::cout << "Run time: " << (double)(clock() - start_time) / CLOCKS_PER_SEC << std::endl;
 
 	return 0;
 }
