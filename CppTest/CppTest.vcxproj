@@ -132,7 +132,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="base64.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="thread.cpp" />
   </ItemGroup>

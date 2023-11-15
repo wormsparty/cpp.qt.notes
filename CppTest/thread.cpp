@@ -12,6 +12,13 @@ static size_t append_to_string(void* contents, size_t size, size_t nmemb, void* 
     return size * nmemb;
 }
 
+std::string url_encode(const std::string& value) {
+    const auto encoded_value = curl_easy_escape(nullptr, value.c_str(), static_cast<int>(value.length()));
+    std::string result(encoded_value);
+    curl_free(encoded_value);
+    return result;
+}
+
 void thread_pool_func(thread_args_t* args) {
     CURL* curl = curl_easy_init();
 
@@ -24,8 +31,7 @@ void thread_pool_func(thread_args_t* args) {
 
     struct curl_slist* headers = NULL;
     headers = curl_slist_append(headers, "Accept: application/json");
-    headers = curl_slist_append(headers, "Content-Type: application/json");
-    headers = curl_slist_append(headers, "charset: utf-8");
+    headers = curl_slist_append(headers, "Content-Type: application/x-www-form-urlencoded");
 
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
     curl_easy_setopt(curl, CURLOPT_URL, args->url.c_str());
@@ -57,6 +63,9 @@ void thread_pool_func(thread_args_t* args) {
 
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, json.c_str());
 
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post_data.c_str());
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, -1L);
+
         response_buffer.clear();
         CURLcode res = curl_easy_perform(curl);
 
@@ -67,6 +76,7 @@ void thread_pool_func(thread_args_t* args) {
         }
     }
 
+    curl_slist_free_all(headers);
     curl_easy_cleanup(curl);
 
     std::cout << "Thread #" << args->start_index << " done." << std::endl;
