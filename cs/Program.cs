@@ -1,7 +1,7 @@
 ﻿using System.Text;
 
 var start = DateTime.Now;
-var url = "http://localhost:8080";
+var url = "http://localhost:5000";
 var minId = 1;
 var maxId = 1000;
 var threadCount = 100;
@@ -9,11 +9,7 @@ var threadCount = 100;
 async Task<HttpResponseMessage> ExecuteQuery(int userId)
 {
     var query = $"""
-        <html>
-            <body>
-                <span>Hello, {userId}</span>
-            </body>
-        </html>
+        Hello, {userId}!
      """;
 
     using var httpClientHandler = new HttpClientHandler();

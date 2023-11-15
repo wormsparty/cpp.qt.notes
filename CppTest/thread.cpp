@@ -1,6 +1,6 @@
 #include <string>
 #include <iostream>
-#include <format>
+#include <sstream>
 
 #include <curl/curl.h>
 
@@ -43,17 +43,13 @@ void thread_pool_func(thread_args_t* args) {
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_buffer);
 
     for (int user_id = args->start_index; user_id < args->end_index; user_id += args->increment) {
-        std::string query = std::format(R"(
-            <html>
-                <body>
-                    <span>Hello, {}!</span>
-                </body>
-            </html>
-        )", user_id);
+        std::stringstream query;
+        query << "Hello, " << user_id << "!";
 
-        std::string post_data = std::format("Hello={}&Url={}", url_encode(base64::to_base64(query)), url_encode(base64::to_base64(args->url)));
+        std::stringstream post_data;
+        post_data << "Hello=" << url_encode(base64::to_base64(query.str())) << "&Url=" << url_encode(base64::to_base64(args->url));
 
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post_data.c_str());
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post_data.str().c_str());
         curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, -1L);
 
         response_buffer.clear();
@@ -68,6 +64,4 @@ void thread_pool_func(thread_args_t* args) {
 
     curl_slist_free_all(headers);
     curl_easy_cleanup(curl);
-
-    std::cout << "Thread #" << args->start_index << " done." << std::endl;
 }

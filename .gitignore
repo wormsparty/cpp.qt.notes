@@ -2,8 +2,11 @@
 *.log
 *.dll
 *.o
+*.pdb
 x64
 x86
+bin
+obj
 .vs
 a.out
 outDebug
