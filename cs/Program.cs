@@ -35,7 +35,7 @@ async Task TestLogin(int userId)
 var threads = new List<Thread>();
 
 for(var i = 0; i < threadCount; i++) {
-    var startIndex = i;
+    var startIndex = minId + i;
 
     var thread = new Thread(() => {
         for (int j = startIndex; j < maxId; j += threadCount) {
