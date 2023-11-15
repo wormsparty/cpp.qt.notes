@@ -3,40 +3,36 @@
 
 #include <curl/curl.h>
 
-static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp)
-{
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
-}
-
-void func() {
-	CURL* curl = curl_easy_init();
-
-	if (curl) {
-		std::string readBuffer;
-
-		curl_easy_setopt(curl, CURLOPT_URL, "http://www.google.com");
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-		CURLcode res = curl_easy_perform(curl);
-		
-		if(res != CURLE_OK) {
-			std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
-		} else {
-			std::cout << readBuffer << std::endl;
-		}
-
-		curl_easy_cleanup(curl);
-	}
-}
+#include "thread.hpp"
 
 int main() {
-	//curl_global_init(CURL_GLOBAL_DEFAULT);
-	
-	std::cout << "Hello, world!" << std::endl;
+	curl_global_init(CURL_GLOBAL_DEFAULT);
 
-	std::thread t(func);
-	t.join();
+	auto url = "http://localhost:8080";
+	auto thread_pool_size = 1;
+	int min_id = 1;
+	int max_id = 10;
+
+	auto threads = new std::thread[thread_pool_size];
+	auto thread_args = new thread_args_t[thread_pool_size];
+
+	for (int i = 0; i < thread_pool_size; i++) {
+		thread_args[i].url = url;
+		thread_args[i].start_index = i;
+		thread_args[i].increment = thread_pool_size;
+		thread_args[i].end_index = max_id;
+
+		threads[i] = std::thread(thread_pool_func, &thread_args[i]);
+	}
+
+	for (int i = 0; i < thread_pool_size; i++) {
+		threads[i].join();
+	}
+
+	delete[] thread_args;
+	delete[] threads;
+
+	curl_global_cleanup();
 
 	return 0;
 }
