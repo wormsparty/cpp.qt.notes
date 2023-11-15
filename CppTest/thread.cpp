@@ -42,26 +42,16 @@ void thread_pool_func(thread_args_t* args) {
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, append_to_string);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_buffer);
 
-    for (int userId = args->start_index; userId < args->end_index; userId += args->increment) {
+    for (int user_id = args->start_index; user_id < args->end_index; user_id += args->increment) {
         std::string query = std::format(R"(
             <html>
                 <body>
-                    <span>Hello {} !</label>
+                    <span>Hello, {}!</span>
                 </body>
             </html>
-        )", userId);
+        )", args->url, user_id);
 
-        std::string encoded_query = base64_encode(query);
-        std::string encoded_url = base64_encode(args->url);
-
-        std::string json = std::format(R"(
-            {{
-                Data: {},
-                Url: {}
-            }}
-        )", encoded_query, encoded_url);
-
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, json.c_str());
+        std::string post_data = std::format("Hello={}&Url={}", url_encode(base64::to_base64(query)), url_encode(base64::to_base64(args->url)));
 
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post_data.c_str());
         curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, -1L);
@@ -72,7 +62,7 @@ void thread_pool_func(thread_args_t* args) {
         if (res != CURLE_OK) {
             std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
         } else {
-            // Check the out put in response_buffer
+            // TODO: Use response_buffer
         }
     }
 
