@@ -49,7 +49,7 @@ void thread_pool_func(thread_args_t* args) {
                     <span>Hello, {}!</span>
                 </body>
             </html>
-        )", args->url, user_id);
+        )", user_id);
 
         std::string post_data = std::format("Hello={}&Url={}", url_encode(base64::to_base64(query)), url_encode(base64::to_base64(args->url)));
 
