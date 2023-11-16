@@ -1,12 +1,22 @@
 #include <QApplication>
 #include <QPushButton>
 
-int main_2(int argc, char **argv)
+#if defined(_WIN64) || defined(_WIN32)
+
+int WinMain()
 {
- QApplication app (argc, argv);
+	QApplication app(__argc, __argv);
 
- QPushButton button ("Hello world !");
- button.show();
+#else
 
- return app.exec();
+	int main(int argc, char** argv)
+	{
+		QApplication app(argc, argv);
+
+#endif
+
+	QPushButton button ("Hello world !");
+	button.show();
+
+	return app.exec();
 }

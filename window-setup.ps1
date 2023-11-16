@@ -1,11 +1,2 @@
-if (Get-Command "vcpkg.exe" -ErrorAction SilentlyContinue) {
-    echo "vcpkg.exe already installed, skipping."
-} else {
-    git clone https://github.com/Microsoft/vcpkg.git
-    .\vcpkg\bootstrap-vcpkg.bat
-    [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$PWD\vcpkg", "Machine")
-    vcpkg integrate install
-}
-
-vcpkg install curl
-vcpkg install qtcore
+[system.Diagnostics.Process]::Start("msedge","https://www.qt.io/download-qt-installer-oss")
+[system.Diagnostics.Process]::Start("msedge","https://marketplace.visualstudio.com/items?itemName=TheQtCompany.QtVisualStudioTools2022")
