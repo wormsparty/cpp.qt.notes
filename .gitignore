@@ -5,3 +5,4 @@ Makefile
 *.stash
 *.user
 *.filters
+.vscode
