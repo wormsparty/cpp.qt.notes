@@ -51,9 +51,9 @@ int WinMain()
 	QAction quit("&Quit");
     quit.setShortcuts(QKeySequence::Quit);
 
-	QObject::connect(&quit, &QAction::triggered, []()
+	QObject::connect(&quit, &QAction::triggered, [&app]()
 	{
-    	std::cout << "Quit" << std::endl;
+    	app.closeAllWindows();
 	});
 
 	menu.setTitle("File");
