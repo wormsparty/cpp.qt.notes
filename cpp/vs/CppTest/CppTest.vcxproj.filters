@@ -15,18 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="../../main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="thread.cpp">
+    <ClCompile Include="../../thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\qt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="thread.hpp">
+    <ClInclude Include="../../base64.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="base64.hpp">
+    <ClInclude Include="../../thread.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

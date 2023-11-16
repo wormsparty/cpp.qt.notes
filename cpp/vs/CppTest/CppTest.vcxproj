@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="../../main.cpp" />
     <ClCompile Include="../../thread.cpp" />
+    <ClCompile Include="..\..\qt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="../../base64.hpp" />

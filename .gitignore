@@ -7,6 +7,7 @@ x64
 x86
 bin
 obj
+tmp
 .vs
 a.out
 outDebug
