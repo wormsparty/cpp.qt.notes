@@ -1,9 +1,8 @@
 #!/bin/sh
 
-cd "`dirname $0`"
+#CXX="g++"
+CXX="clang++"
+CXXFLAGS="-std=c++20 -Wall -O2 $(pkg-config Qt6Widgets --cflags)"
+LDFLAGS="-lcurl $(pkg-config Qt6Widgets --libs)"
 
-if [ ! -d ./tmp ]; then
-	echo "Run ./configure first"
-fi
-
-cmake --build tmp --config Release
+$CXX $CXXFLAGS cpp/*.cpp $LDFLAGS

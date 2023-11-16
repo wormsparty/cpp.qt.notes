@@ -26,6 +26,6 @@ set_target_properties(cpptest PROPERTIES
 find_program(TOOL_WINDEPLOYQT NAMES windeployqt)
 
 add_custom_command(TARGET cpptest POST_BUILD
-    COMMAND ${TOOL_WINDEPLOYQT} $<TARGET_FILE:cpptest> --no-translations
+    COMMAND ${TOOL_WINDEPLOYQT} $<TARGET_FILE:cpptest>
     COMMENT "Running windeployqt..."
 )
