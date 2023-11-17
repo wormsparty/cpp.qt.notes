@@ -8,3 +8,4 @@ TODOs:
 - Support markdown
 - Style the editor
 - Spellchecker
+- Integrate Google Drive and/or rclone?
