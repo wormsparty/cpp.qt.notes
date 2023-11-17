@@ -1,3 +1,4 @@
+// GUI
 #include <QMainWindow>
 #include <QApplication>
 #include <QListView>
@@ -8,6 +9,8 @@
 #include <QMenuBar>
 #include <QAction>
 #include <QMenu>
+
+// std
 #include <iostream>
 
 #if defined(_WIN64) || defined(_WIN32)
@@ -18,11 +21,12 @@ int WinMain()
 
 #else
 
-	int main(int argc, char** argv)
-	{
-		QApplication app(argc, argv);
+int main(int argc, char** argv)
+{
+	QApplication app(argc, argv);
 
 #endif
+	
 	QMainWindow main;
     QWidget widget;
 	QTextEdit editor;
