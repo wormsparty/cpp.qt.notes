@@ -25,3 +25,4 @@ fi
 
 meson/bin/meson setup --cross-file spec.txt build-mingw
 meson/bin/meson compile -C build-mingw
+meson/bin/meson dist -C build-mingw
