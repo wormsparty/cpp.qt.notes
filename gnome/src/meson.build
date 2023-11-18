@@ -24,5 +24,6 @@ gnometest_deps = [
 executable('gnometest', gnometest_sources,
   dependencies: gnometest_deps,
   install: true,
+  win_subsystem: 'windows'
 )
 

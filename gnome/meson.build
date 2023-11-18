@@ -5,7 +5,7 @@ project('gnometest', ['cpp', 'c'],
     'warning_level=2', 
     'werror=false', 
     'cpp_std=gnu++2a',
-    'default_library=static',
+    'default_library=shared',
     'buildtype=release',
   ],
 )
