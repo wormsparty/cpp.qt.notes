@@ -10,4 +10,3 @@ Makefile
 .qtc_clangd
 subprojects
 meson
-spec.txt
