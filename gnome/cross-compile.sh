@@ -11,7 +11,7 @@ if [ ! -d meson ]; then
 	meson/bin/pip3 install meson
 fi
 
-meson/bin/meson setup --cross-file cross.meson build-mingw --wipe
+meson/bin/meson setup --cross-file cross.meson build-mingw
 meson/bin/meson compile -C build-mingw
 
 rm -fr ./bin

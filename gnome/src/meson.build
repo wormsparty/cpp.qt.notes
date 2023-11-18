@@ -4,7 +4,7 @@ gnometest_sources = [
 
 gtk_dep = dependency(
   'gtk4',
-  version: '>= 4.11.2',
+  version: '>= 4.0.0',
   fallback: ['gtk', 'gtk_dep'],
   default_options: [
     'introspection=disabled',
