@@ -14,7 +14,6 @@ gtk_dep = dependency(
     'build-examples=false',
     'media-gstreamer=disabled',
     'print-cups=disabled',
-    'default_library=static'
   ]
 )
 
