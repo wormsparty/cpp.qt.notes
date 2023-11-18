@@ -8,5 +8,3 @@ Makefile
 *.filters
 .vscode
 .qtc_clangd
-subprojects
-meson
