@@ -6,10 +6,12 @@ strip = 'x86_64-w64-mingw32-strip'
 windres = 'x86_64-w64-mingw32-windres'
 exe_wrapper = 'wine'
 
-[properties]
+[built-in options]
 c_link_args = ['-static-libgcc']
 cpp_link_args = ['-static-libgcc', '-static-libstdc++']
-needs_exe_wrapper = true
+
+[project options]
+default_library = 'static'
 
 [host_machine]
 system = 'windows'
